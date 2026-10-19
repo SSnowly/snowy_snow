@@ -91,15 +91,6 @@ Every pile takes several scoops before it is gone, depending on its size. A whee
 | `configs/shared/main.lua` | Item names, keys, pile types, wheelbarrow capacity, shovel and animation settings |
 | `configs/server/main.lua` | Default respawn time, zone limits, cooldowns, interaction distance, admin group |
 
-## For developers
-
-Other resources can listen to these server events:
-
-- `snowy_snow:barrowFilled (source, netId, snow)`
-- `snowy_snow:barrowEmptied (source, netId, amount)`
-
-And read how much snow is in a wheelbarrow with `exports.snowy_snow:getBarrowSnow(netId)`.
-
 ## Requirements
 
 - [ox_lib](https://github.com/overextended/ox_lib)

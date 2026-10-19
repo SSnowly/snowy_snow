@@ -32,16 +32,4 @@ function M.delete(obj)
     if obj and DoesEntityExist(obj) then DeleteEntity(obj) end
 end
 
----@param entity number
----@param timeoutMs number
----@return boolean
-function M.requestControl(entity, timeoutMs)
-    local deadline = GetGameTimer() + timeoutMs
-    while not NetworkHasControlOfEntity(entity) and GetGameTimer() < deadline do
-        NetworkRequestControlOfEntity(entity)
-        Wait(0)
-    end
-    return NetworkHasControlOfEntity(entity)
-end
-
 return M

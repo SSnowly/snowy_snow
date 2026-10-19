@@ -53,6 +53,7 @@ return {
         model          = 'prop_wheelbarrow01a',
         capacity       = 6,
         interactRange  = 2.2,
+        renderDistance = 80.0,
         bone           = 28422,
         offset         = { pos = vec3(0.6750, 0.7411, -0.2844), rot = vec3(-50.471, -32.778, 43.899) },
         stages = {

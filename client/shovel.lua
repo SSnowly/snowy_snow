@@ -253,16 +253,17 @@ local function scoop(pile)
 end
 
 ---@param barrow number?
-local function dump(barrow)
+---@param barrowCoords vector3?
+local function dump(barrow, barrowCoords)
     local ped = cache.ped
     Status.dumping = true
     Prompt.set('shovel', nil)
-    if barrow then
-        faceWork(ped, GetEntityCoords(barrow), cfg.dumpSideDeg)
+    if barrow and barrowCoords then
+        faceWork(ped, barrowCoords, cfg.dumpSideDeg)
     end
     local ok, reason
     if barrow then
-        ok, reason = lib.callback.await('snowy_snow:dumpIntoBarrow', false, NetworkGetNetworkIdFromEntity(barrow))
+        ok, reason = lib.callback.await('snowy_snow:dumpIntoBarrow', false, barrow)
     else
         ok = lib.callback.await('snowy_snow:dumpShovel', false)
     end
@@ -298,10 +299,10 @@ CreateThread(function()
                     Prompt.set('shovel', nil)
                 end
             else
-                local barrow = Barrow.nearest(me, SharedConfig.barrow.interactRange)
+                local barrow, barrowCoords = Barrow.nearest(me, SharedConfig.barrow.interactRange)
                 Prompt.set('shovel', barrow and '[E] Into wheelbarrow  [G] Dump snow' or '[G] Dump snow')
                 if barrow and IsControlJustReleased(0, keys.interact) then
-                    dump(barrow)
+                    dump(barrow, barrowCoords)
                 elseif IsControlJustReleased(0, keys.dump) then
                     dump(nil)
                 end
