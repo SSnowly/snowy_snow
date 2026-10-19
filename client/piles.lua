@@ -18,12 +18,9 @@ local piles = {}
 ---@param pose GroundPose
 ---@return number
 local function spawnLocal(name, pose)
-    local hash = joaat(name)
-    lib.requestModel(hash)
-    local obj = CreateObject(hash, pose.coords.x, pose.coords.y, pose.coords.z, false, false, false)
+    local obj = lib.prop.create(name, pose.coords.x, pose.coords.y, pose.coords.z).handle
     Ground.apply(obj, pose)
     FreezeEntityPosition(obj, true)
-    SetModelAsNoLongerNeeded(hash)
     return obj
 end
 

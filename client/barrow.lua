@@ -92,10 +92,7 @@ local function build(visual)
     end
     if not visual.obj or not DoesEntityExist(visual.obj) then
         despawn(visual)
-        local hash = joaat(cfg.model)
-        lib.requestModel(hash)
-        visual.obj = CreateObject(hash, anchor.x, anchor.y, anchor.z, false, false, false)
-        SetModelAsNoLongerNeeded(hash)
+        visual.obj = lib.prop.create(cfg.model, anchor.x, anchor.y, anchor.z).handle
     end
     local ped = holderPed(data.holder)
     if ped then

@@ -8,11 +8,8 @@ local M = {}
 ---@param coords vector3
 ---@return number
 function M.createLocal(model, coords)
-    local hash = joaat(model)
-    lib.requestModel(hash)
-    local obj = CreateObject(hash, coords.x, coords.y, coords.z, false, false, false)
+    local obj = lib.prop.create(model, coords.x, coords.y, coords.z).handle
     SetEntityCollision(obj, false, false)
-    SetModelAsNoLongerNeeded(hash)
     return obj
 end
 
